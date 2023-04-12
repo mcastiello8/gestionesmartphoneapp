@@ -34,7 +34,7 @@ public class Smartphone {
 	@Column(name = "prezzo")
 	private int prezzo;
 	@Column(name = "versioneOS")
-	private String versioneOS;
+	private Integer versioneOS;
 
 	// campi per le time info del record
 	@CreationTimestamp
@@ -48,7 +48,7 @@ public class Smartphone {
 	@JoinTable(name = "smartphone_app", joinColumns = @JoinColumn(name = "smartphone_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "app_id", referencedColumnName = "ID"))
 	private Set<App> apps = new HashSet<App>();
 
-	public Smartphone(Long id, String marca, String modello, int prezzo, String versioneOS) {
+	public Smartphone(Long id, String marca, String modello, int prezzo, Integer versioneOS) {
 		super();
 		this.id = id;
 		this.marca = marca;
@@ -59,7 +59,7 @@ public class Smartphone {
 
 	
 
-	public Smartphone(String marca, String modello, int prezzo, String versioneOS) {
+	public Smartphone(String marca, String modello, int prezzo, Integer versioneOS) {
 		super();
 		this.marca = marca;
 		this.modello = modello;
@@ -101,12 +101,12 @@ public class Smartphone {
 		this.prezzo = prezzo;
 	}
 
-	public String getVersioneOS() {
+	public Integer getVersioneOS() {
 		return versioneOS;
 	}
 
-	public void setVersioneOS(String versioneOS) {
-		this.versioneOS = versioneOS;
+	public void setVersioneOS(Integer newVersion) {
+		this.versioneOS = newVersion;
 	}
 
 	public LocalDateTime getCreateDateTime() {
@@ -131,6 +131,14 @@ public class Smartphone {
 
 	public void setApps(Set<App> apps) {
 		this.apps = apps;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Smartphone [id=" + id + ", marca=" + marca + ", modello=" + modello + ", prezzo=" + prezzo
+				+ ", versioneOS=" + versioneOS + "]";
 	}
 	
 	

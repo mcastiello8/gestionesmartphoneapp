@@ -32,7 +32,7 @@ public class App {
 	@Column(name = "dataultimoaggiornamento")
 	private LocalDate dataUltimoAggiornamento;
 	@Column(name = "versione")
-	private String versione;
+	private Integer versione;
 
 	// campi per le time info del record
 	@CreationTimestamp
@@ -45,13 +45,19 @@ public class App {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "apps")
 	private Set<Smartphone> smartphones = new HashSet<Smartphone>();
 
-	public App(Long id, String nome, LocalDate dataInstallazione, LocalDate dataUltimoAggiornamento, String versione) {
+	public App(Long id, String nome, LocalDate dataInstallazione, LocalDate dataUltimoAggiornamento, Integer versione) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataInstallazione = dataInstallazione;
 		this.dataUltimoAggiornamento = dataUltimoAggiornamento;
 		this.versione = versione;
+	}
+
+	public App(String nome, Integer versione) {
+		this.nome = nome;
+		this.versione = versione;
+
 	}
 
 	public Long getId() {
@@ -86,12 +92,12 @@ public class App {
 		this.dataUltimoAggiornamento = dataUltimoAggiornamento;
 	}
 
-	public String getVersione() {
+	public Integer getVersione() {
 		return versione;
 	}
 
-	public void setVersione(String versione) {
-		this.versione = versione;
+	public void setVersione(Integer newVersion) {
+		this.versione = newVersion;
 	}
 
 	public LocalDateTime getCreateDateTime() {
@@ -117,9 +123,5 @@ public class App {
 	public void setSmartphones(Set<Smartphone> smartphones) {
 		this.smartphones = smartphones;
 	}
-	
-	
-	
-	
-	
+
 }
